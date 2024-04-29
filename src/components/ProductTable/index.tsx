@@ -5,9 +5,14 @@ import "./style.css";
 interface Props {
   products: Array<ProductType>;
   handleDeleteProduct: (productId: number) => void;
+  handleEditProduct: (productId: number) => void;
 }
 
-export default function ProductTable({ products, handleDeleteProduct }: Props) {
+export default function ProductTable({
+  products,
+  handleDeleteProduct,
+  handleEditProduct,
+}: Props) {
   return (
     <table>
       <thead>
@@ -32,7 +37,9 @@ export default function ProductTable({ products, handleDeleteProduct }: Props) {
             </td>
             <td>{product.quantity}</td>
             <td className="actions">
-              <button>Editar</button>
+              <button onClick={() => handleEditProduct(product.id)}>
+                Editar
+              </button>
               <button onClick={() => handleDeleteProduct(product.id)}>
                 Excluir
               </button>
